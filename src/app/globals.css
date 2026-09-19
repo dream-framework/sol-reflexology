@@ -1,0 +1,265 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ============================================================
+   Sōl Reflexology — Earthy Zen × Dark Luxury Design System
+   ============================================================ */
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-cormorant);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Brand tokens — exposed as Tailwind colors */
+  --color-ink: var(--ink);
+  --color-forest: var(--forest);
+  --color-forest-deep: var(--forest-deep);
+  --color-sand: var(--sand);
+  --color-cream: var(--cream);
+  --color-sage: var(--sage);
+  --color-sage-deep: var(--sage-deep);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-terracotta: var(--terracotta);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 12px);
+}
+
+:root {
+  /* Dark luxury base — the canonical theme */
+  --radius: 0.5rem;
+
+  /* Surfaces */
+  --background: oklch(0.16 0.012 150);          /* very deep forest-charcoal */
+  --foreground: oklch(0.96 0.012 90);           /* warm cream */
+  --card: oklch(0.21 0.014 150);                /* forest green */
+  --card-foreground: oklch(0.96 0.012 90);
+  --popover: oklch(0.19 0.013 150);
+  --popover-foreground: oklch(0.96 0.012 90);
+
+  /* Brand action */
+  --primary: oklch(0.78 0.06 95);               /* warm sand */
+  --primary-foreground: oklch(0.18 0.012 150);
+  --secondary: oklch(0.27 0.018 150);
+  --secondary-foreground: oklch(0.94 0.012 90);
+
+  /* Muted */
+  --muted: oklch(0.25 0.014 150);
+  --muted-foreground: oklch(0.72 0.018 95);
+  --accent: oklch(0.32 0.025 150);
+  --accent-foreground: oklch(0.94 0.012 90);
+
+  /* Misc */
+  --destructive: oklch(0.62 0.18 30);
+  --border: oklch(0.96 0.012 90 / 10%);
+  --input: oklch(0.96 0.012 90 / 12%);
+  --ring: oklch(0.78 0.09 95 / 60%);
+
+  /* Brand tokens */
+  --ink: oklch(0.16 0.012 150);                 /* deep forest-charcoal */
+  --forest: oklch(0.21 0.014 150);              /* forest green */
+  --forest-deep: oklch(0.13 0.012 150);         /* near-black forest */
+  --sand: oklch(0.82 0.05 80);                  /* warm sand */
+  --cream: oklch(0.96 0.012 90);                /* warm cream */
+  --sage: oklch(0.72 0.025 130);                /* muted sage */
+  --sage-deep: oklch(0.50 0.04 140);            /* deep sage */
+  --gold: oklch(0.78 0.11 85);                  /* warm muted gold */
+  --gold-soft: oklch(0.85 0.08 90);             /* soft champagne gold */
+  --terracotta: oklch(0.65 0.10 50);            /* muted terracotta */
+
+  --chart-1: oklch(0.78 0.11 85);
+  --chart-2: oklch(0.72 0.025 130);
+  --chart-3: oklch(0.65 0.10 50);
+  --chart-4: oklch(0.82 0.05 80);
+  --chart-5: oklch(0.50 0.04 140);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "ss01", "cv11", "calt";
+  }
+  ::selection {
+    background: oklch(0.78 0.11 85 / 35%);
+    color: oklch(0.96 0.012 90);
+  }
+}
+
+/* ============================================================
+   Custom utilities
+   ============================================================ */
+
+@layer utilities {
+  .font-serif {
+    font-family: var(--font-cormorant), Georgia, serif;
+  }
+  .font-sans {
+    font-family: var(--font-inter), system-ui, sans-serif;
+  }
+
+  /* Elegant letter-spacing for eyebrows / labels */
+  .tracking-luxe {
+    letter-spacing: 0.32em;
+  }
+  .tracking-wide-luxe {
+    letter-spacing: 0.18em;
+  }
+
+  /* Gradient text — gold to sage */
+  .text-gradient-gold {
+    background: linear-gradient(105deg, oklch(0.85 0.08 90) 0%, oklch(0.78 0.11 85) 40%, oklch(0.72 0.025 130) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Hairline divider */
+  .hairline {
+    background: linear-gradient(90deg, transparent, oklch(0.78 0.11 85 / 35%), transparent);
+  }
+
+  /* Grain overlay — gives surfaces an organic, film-like texture */
+  .grain {
+    position: relative;
+  }
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.045;
+    background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.6 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    mix-blend-mode: overlay;
+  }
+
+  /* Glassy card surface */
+  .glass {
+    background: oklch(0.96 0.012 90 / 4%);
+    backdrop-filter: blur(14px) saturate(120%);
+    -webkit-backdrop-filter: blur(14px) saturate(120%);
+    border: 1px solid oklch(0.96 0.012 90 / 8%);
+  }
+  .glass-gold {
+    background: oklch(0.78 0.11 85 / 6%);
+    backdrop-filter: blur(14px) saturate(120%);
+    -webkit-backdrop-filter: blur(14px) saturate(120%);
+    border: 1px solid oklch(0.78 0.11 85 / 18%);
+  }
+
+  /* Soft inner shadow used on luxury cards */
+  .shadow-luxe {
+    box-shadow:
+      0 1px 0 0 oklch(0.96 0.012 90 / 6%) inset,
+      0 24px 60px -20px oklch(0.05 0 0 / 0.7),
+      0 8px 24px -12px oklch(0.05 0 0 / 0.6);
+  }
+  .shadow-luxe-lg {
+    box-shadow:
+      0 1px 0 0 oklch(0.96 0.012 90 / 6%) inset,
+      0 48px 100px -28px oklch(0.05 0 0 / 0.85),
+      0 18px 40px -20px oklch(0.05 0 0 / 0.7);
+  }
+
+  /* Hover lift */
+  .lift {
+    transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 600ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .lift:hover {
+    transform: translateY(-6px);
+  }
+
+  /* Animated underline for nav links */
+  .nav-underline {
+    position: relative;
+  }
+  .nav-underline::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, oklch(0.78 0.11 85), transparent);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 500ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .nav-underline:hover::after,
+  .nav-underline[data-active="true"]::after {
+    transform: scaleX(1);
+  }
+
+  /* Custom scrollbar — slim and elegant */
+  .scroll-elegant::-webkit-scrollbar { width: 6px; height: 6px; }
+  .scroll-elegant::-webkit-scrollbar-track { background: transparent; }
+  .scroll-elegant::-webkit-scrollbar-thumb {
+    background: oklch(0.78 0.11 85 / 25%);
+    border-radius: 999px;
+  }
+  .scroll-elegant::-webkit-scrollbar-thumb:hover {
+    background: oklch(0.78 0.11 85 / 45%);
+  }
+
+  /* Slow float animation */
+  @keyframes float-slow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+  .animate-float-slow {
+    animation: float-slow 8s ease-in-out infinite;
+  }
+
+  /* Gentle shimmer for the gold accent line */
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      oklch(0.78 0.11 85 / 60%) 50%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 4s linear infinite;
+  }
+
+  /* Reveal-on-scroll initial state (Framer Motion will animate it) */
+  .reveal-init {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
