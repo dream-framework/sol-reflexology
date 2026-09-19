@@ -18,7 +18,7 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://solreflexology.com"),
+  metadataBase: new URL("https://dream-framework.github.io/sol-reflexology"),
   title: "Sōl — Reflexology & Holistic Bodywork",
   description:
     "A sanctuary for grounding reflexology and holistic bodywork. Slow, intentional sessions rooted in traditional practice and contemporary wellness.",

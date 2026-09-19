@@ -9,6 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 import { SERVICES, PRACTITIONERS, TIME_SLOTS, type Service } from "./site-data";
 import { Reveal } from "./reveal";
+import { asset } from "@/lib/asset";
 import { toast } from "sonner";
 
 type BookingState = {
@@ -109,7 +110,7 @@ export function Booking() {
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-b from-ink via-forest-deep to-ink" />
         <img
-          src="/images/booking-bg.png"
+          src={asset("/images/booking-bg.png")}
           alt=""
           aria-hidden
           className="absolute inset-0 h-full w-full object-cover opacity-25"

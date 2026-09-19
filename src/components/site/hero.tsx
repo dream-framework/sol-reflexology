@@ -4,6 +4,7 @@ import * as React from "react";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { ArrowDown, Star } from "lucide-react";
 import { STUDIO } from "./site-data";
+import { asset } from "@/lib/asset";
 
 export function Hero() {
   const ref = React.useRef<HTMLDivElement>(null);
@@ -34,7 +35,7 @@ export function Hero() {
         {/* Fallback gradient while image loads / if it ever 404s */}
         <div className="absolute inset-0 bg-gradient-to-b from-forest-deep via-ink to-forest-deep" />
         <img
-          src="/images/hero.png"
+          src={asset("/images/hero.png")}
           alt="A serene reflexology sanctuary at golden hour with river stones, botanical leaves, and a brass bowl"
           className="absolute inset-0 h-full w-full object-cover"
           fetchPriority="high"
