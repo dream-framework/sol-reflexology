@@ -4,7 +4,6 @@ import * as React from "react";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { Quote } from "lucide-react";
 import { Reveal } from "./reveal";
-import { asset } from "@/lib/asset";
 
 const PILLARS = [
   {
@@ -34,25 +33,25 @@ export function Philosophy() {
     <section
       id="philosophy"
       ref={ref}
-      className="relative py-28 sm:py-40 scroll-mt-24 overflow-hidden"
+      className="relative py-28 sm:py-40 scroll-mt-24 overflow-hidden bg-sage-section"
     >
-      {/* Subtle background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-ink via-forest-deep to-ink" />
       <div className="grain absolute inset-0" />
-
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
           {/* Image column */}
           <Reveal className="lg:col-span-5 order-2 lg:order-1">
-            <div className="relative aspect-[3/4] rounded-2xl overflow-hidden border border-cream/10 shadow-luxe-lg">
-              <div className="absolute inset-0 bg-gradient-to-br from-forest to-forest-deep" />
+            <div className="relative aspect-[3/4] rounded-2xl overflow-hidden border border-forest/10 shadow-luxe-lg">
+              <div className="absolute inset-0 bg-gradient-to-br from-sage to-sage-deep/50" />
               <motion.img
-                src={asset("/images/philosophy.png")}
-                alt="A practitioner's hands performing reflexology on a polished stone surface, surrounded by botanical elements"
+                src="/images/philosophy-light.png"
+                alt="A practitioner's hands performing reflexology on a cream linen surface, surrounded by botanical elements"
                 style={reduce ? undefined : { y: imgY, scale: 1.1 }}
                 className="absolute inset-0 h-full w-full object-cover will-change-transform"
+                onError={(e) => {
+                  e.currentTarget.src = "/images/proto-book.jpg";
+                }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-forest/30 via-transparent to-transparent" />
 
               {/* Floating quote card */}
               <motion.div
@@ -62,12 +61,12 @@ export function Philosophy() {
                 transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
                 className="absolute bottom-6 left-6 right-6 glass-gold rounded-xl p-5"
               >
-                <Quote className="size-5 text-gold/80 mb-2" />
-                <p className="font-serif italic text-cream/90 text-base leading-snug">
+                <Quote className="size-5 text-gold mb-2" />
+                <p className="font-serif italic text-forest text-base leading-snug">
                   "Pressure is a conversation, not a force."
                 </p>
-                <p className="mt-2 text-[10px] tracking-luxe uppercase text-cream/55">
-                  — Mira Okafor, Founder
+                <p className="mt-2 text-[10px] tracking-luxe uppercase text-forest-soft/65">
+                  — Studio principle
                 </p>
               </motion.div>
             </div>
@@ -78,20 +77,20 @@ export function Philosophy() {
             <Reveal>
               <div className="flex items-center gap-4 mb-6">
                 <span className="h-px w-10 bg-gold/60" />
-                <span className="text-xs tracking-luxe uppercase text-gold/90">Philosophy</span>
+                <span className="text-xs tracking-luxe uppercase text-gold">Philosophy</span>
               </div>
             </Reveal>
 
             <Reveal delay={0.1}>
-              <h2 className="font-serif font-light text-cream text-[clamp(2rem,4.5vw,3.5rem)] leading-[1.08] tracking-[-0.01em] mb-8">
+              <h2 className="font-serif font-light text-forest text-[clamp(2rem,4.5vw,3.5rem)] leading-[1.08] tracking-[-0.01em] mb-8">
                 We don't chase symptoms.
                 <br />
-                We <span className="italic text-gradient-gold">listen for the rhythm</span> underneath.
+                We <span className="italic text-gradient-forest">listen for the rhythm</span> underneath.
               </h2>
             </Reveal>
 
             <Reveal delay={0.2}>
-              <p className="text-cream/65 text-base sm:text-lg leading-relaxed font-light max-w-2xl mb-6">
+              <p className="text-forest-soft text-base sm:text-lg leading-relaxed font-light max-w-2xl mb-6">
                 Reflexology is old. The oldest surviving evidence — a wall painting
                 in the tomb of Ankhmahor in Egypt — dates to 2330 BCE. The practice
                 has crossed continents and centuries, refined by Chinese, Egyptian,
@@ -100,7 +99,7 @@ export function Philosophy() {
             </Reveal>
 
             <Reveal delay={0.3}>
-              <p className="font-serif italic text-cream/85 text-xl sm:text-2xl leading-snug max-w-2xl mb-14">
+              <p className="font-serif italic text-forest text-xl sm:text-2xl leading-snug max-w-2xl mb-14">
                 The foot is a map of the whole body. Working it is a way of speaking
                 to every system at once — through the body's quietest, most patient
                 language.
@@ -111,9 +110,9 @@ export function Philosophy() {
             <div className="grid sm:grid-cols-3 gap-8 sm:gap-6">
               {PILLARS.map((p, i) => (
                 <Reveal key={p.title} delay={0.4 + i * 0.1}>
-                  <div className="border-t border-cream/15 pt-5">
-                    <h3 className="font-serif text-2xl text-cream mb-2">{p.title}</h3>
-                    <p className="text-cream/55 text-sm leading-relaxed font-light">
+                  <div className="border-t border-forest/20 pt-5">
+                    <h3 className="font-serif text-2xl text-forest mb-2">{p.title}</h3>
+                    <p className="text-forest-soft text-sm leading-relaxed font-light">
                       {p.body}
                     </p>
                   </div>

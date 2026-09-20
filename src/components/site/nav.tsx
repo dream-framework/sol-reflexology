@@ -15,7 +15,6 @@ export function Nav() {
     setScrolled(v > 32);
   });
 
-  // Lock body scroll when mobile menu is open
   React.useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => {
@@ -32,7 +31,7 @@ export function Nav() {
         className={cn(
           "fixed top-0 inset-x-0 z-50 transition-all duration-500",
           scrolled
-            ? "py-3 bg-ink/70 backdrop-blur-xl border-b border-cream/10"
+            ? "py-3 bg-cream/85 backdrop-blur-xl border-b border-forest/8"
             : "py-6 bg-transparent"
         )}
       >
@@ -44,7 +43,7 @@ export function Nav() {
               <a
                 key={link.href}
                 href={link.href}
-                className="nav-underline text-sm tracking-wide-luxe text-cream/75 hover:text-cream transition-colors uppercase"
+                className="nav-underline text-sm tracking-wide-luxe text-forest-soft hover:text-forest transition-colors uppercase"
               >
                 {link.label}
               </a>
@@ -55,18 +54,18 @@ export function Nav() {
             <a
               href="#booking"
               className="hidden sm:inline-flex items-center px-5 py-2.5 rounded-full text-xs tracking-luxe uppercase
-                bg-gradient-to-r from-gold to-gold-soft text-ink font-medium
-                shadow-[0_8px_30px_-8px_oklch(0.78_0.11_85/0.5)]
-                hover:shadow-[0_12px_40px_-8px_oklch(0.78_0.11_85/0.65)]
+                bg-forest text-cream font-medium
+                shadow-[0_8px_30px_-8px_oklch(0.30_0.028_155/0.4)]
+                hover:shadow-[0_12px_40px_-8px_oklch(0.30_0.028_155/0.55)]
                 transition-all duration-500 hover:-translate-y-0.5"
             >
-              Book a session
+              Book an appointment
             </a>
             <button
               type="button"
               aria-label="Open menu"
               onClick={() => setOpen(true)}
-              className="lg:hidden size-11 inline-flex items-center justify-center rounded-full border border-cream/15 text-cream/80 hover:text-cream hover:border-cream/30 transition-colors"
+              className="lg:hidden size-11 inline-flex items-center justify-center rounded-full border border-forest/15 text-forest-soft hover:text-forest hover:border-forest/30 transition-colors"
             >
               <Menu className="size-5" />
             </button>
@@ -74,7 +73,6 @@ export function Nav() {
         </div>
       </motion.header>
 
-      {/* Mobile overlay menu */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -82,7 +80,7 @@ export function Nav() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
-            className="fixed inset-0 z-[60] lg:hidden bg-ink/95 backdrop-blur-2xl flex flex-col"
+            className="fixed inset-0 z-[60] lg:hidden bg-cream/97 backdrop-blur-2xl flex flex-col"
           >
             <div className="flex items-center justify-between px-6 py-6">
               <Logo />
@@ -90,7 +88,7 @@ export function Nav() {
                 type="button"
                 aria-label="Close menu"
                 onClick={() => setOpen(false)}
-                className="size-11 inline-flex items-center justify-center rounded-full border border-cream/15 text-cream/80 hover:text-cream"
+                className="size-11 inline-flex items-center justify-center rounded-full border border-forest/15 text-forest-soft hover:text-forest"
               >
                 <X className="size-5" />
               </button>
@@ -104,7 +102,7 @@ export function Nav() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 + i * 0.07, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                  className="font-serif text-4xl text-cream/85 hover:text-gold transition-colors"
+                  className="font-serif text-4xl text-forest-soft hover:text-gold transition-colors"
                 >
                   {link.label}
                 </motion.a>
@@ -115,13 +113,10 @@ export function Nav() {
                 href="#booking"
                 onClick={() => setOpen(false)}
                 className="block text-center px-6 py-4 rounded-full text-sm tracking-luxe uppercase
-                  bg-gradient-to-r from-gold to-gold-soft text-ink font-medium"
+                  bg-forest text-cream font-medium"
               >
-                Book a session
+                Book an appointment
               </a>
-              <p className="mt-6 text-center text-xs tracking-luxe uppercase text-cream/50">
-                {STUDIO.phoneDisplay}
-              </p>
             </div>
           </motion.div>
         )}
@@ -138,12 +133,12 @@ function Logo() {
         className="relative inline-flex size-9 items-center justify-center rounded-full border border-gold/40 text-gold
           group-hover:border-gold transition-colors"
       >
-        <span className="font-serif text-lg leading-none translate-y-[-1px]">s</span>
+        <span className="font-serif text-lg leading-none translate-y-[-1px]">r</span>
         <span className="absolute inset-0 rounded-full bg-gold/10 blur-md opacity-0 group-hover:opacity-100 transition-opacity" />
       </span>
       <span className="flex flex-col leading-none">
-        <span className="font-serif text-2xl tracking-wide text-cream">{STUDIO.name}</span>
-        <span className="text-[10px] tracking-luxe uppercase text-cream/45 mt-1">
+        <span className="font-serif text-2xl tracking-wide text-forest">{STUDIO.name}</span>
+        <span className="text-[10px] tracking-luxe uppercase text-forest-soft/55 mt-1">
           {STUDIO.tagline}
         </span>
       </span>

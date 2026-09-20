@@ -18,10 +18,10 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://dream-framework.github.io/sol-reflexology"),
-  title: "Sōl — Reflexology & Holistic Bodywork",
+  metadataBase: new URL("https://example.com"),
+  title: "Reflexology & Holistic Bodywork",
   description:
-    "A sanctuary for grounding reflexology and holistic bodywork. Slow, intentional sessions rooted in traditional practice and contemporary wellness.",
+    "Personalized reflexology in a calm, plant-filled studio. Slow, intentional sessions rooted in traditional practice.",
   keywords: [
     "reflexology",
     "holistic wellness",
@@ -30,24 +30,21 @@ export const metadata: Metadata = {
     "spa",
     "wellness",
     "self care",
-    "meditation",
   ],
-  authors: [{ name: "Sōl Reflexology" }],
   icons: {
     icon: "/logo.svg",
   },
   openGraph: {
-    title: "Sōl — Reflexology & Holistic Bodywork",
+    title: "Reflexology & Holistic Bodywork",
     description:
-      "A sanctuary for grounding reflexology and holistic bodywork. Slow, intentional sessions rooted in traditional practice.",
-    siteName: "Sōl Reflexology",
+      "Personalized reflexology in a calm, plant-filled studio. Slow, intentional sessions rooted in traditional practice.",
     type: "website",
-    images: [{ url: "/images/og-cover.png", width: 1344, height: 768, alt: "Sōl Reflexology" }],
+    images: [{ url: "/images/og-cover-light.png", width: 1344, height: 768, alt: "Reflexology studio" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sōl — Reflexology & Holistic Bodywork",
-    description: "A sanctuary for grounding reflexology and holistic bodywork.",
+    title: "Reflexology & Holistic Bodywork",
+    description: "Personalized reflexology in a calm, plant-filled studio.",
   },
 };
 
@@ -57,7 +54,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className="dark">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${inter.variable} ${cormorant.variable} antialiased bg-background text-foreground font-sans`}
       >
@@ -66,9 +63,9 @@ export default function RootLayout({
           position="bottom-right"
           toastOptions={{
             style: {
-              background: "oklch(0.21 0.014 150)",
-              border: "1px solid oklch(0.96 0.012 90 / 12%)",
-              color: "oklch(0.96 0.012 90)",
+              background: "oklch(1 0.003 85)",
+              border: "1px solid oklch(0.30 0.028 155 / 12%)",
+              color: "oklch(0.27 0.025 155)",
             },
           }}
         />

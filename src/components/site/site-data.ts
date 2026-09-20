@@ -1,11 +1,8 @@
 import type { LucideIcon } from "lucide-react";
 import {
   Footprints,
-  Hand,
-  Sparkles,
-  Flower2,
-  Moon,
-  Leaf,
+  Wind,
+  Heart,
   Clock,
   MapPin,
   Phone,
@@ -16,27 +13,40 @@ import {
 
 /* ============================================================
    Site content — all copy lives here so it's trivial to swap.
+
+   ↓ EDIT THE VALUES BELOW TO MAKE THIS SITE YOURS ↓
+   - STUDIO:        name, contact, address, socials
+   - SERVICES:      your service menu
+   - BUSINESS_HOURS: your weekly schedule (drives booking slot generation)
+   - FAQ_ITEMS:     your frequently asked questions
    ============================================================ */
 
 export const STUDIO = {
-  name: "Sōl",
-  full: "Sōl Reflexology",
+  // Brand — replace with your studio name
+  name: "Reflexology",
+  full: "Reflexology Studio",
   tagline: "Reflexology & Holistic Bodywork",
-  phoneDisplay: "+1 (416) 555-0192",
-  phoneHref: "tel:+14165550192",
-  email: "hello@solreflexology.com",
-  address: "218 Elm Avenue, Suite 4",
-  city: "Toronto, ON  M4X 1G3",
-  hoursShort: "Tue – Sat · 10 to 8",
-  instagram: "@sol.reflexology",
-  instagramHref: "https://instagram.com",
+
+  // Hero copy
+  heroEyebrow: "Personalized reflexology",
+  heroHeadline: "Relax. Restore. Rebalance.",
+  heroSub: "Personalized reflexology in a calm, plant-filled studio.",
+
+  // Contact — leave empty strings until you fill them in
+  phoneDisplay: "",            // e.g. "+1 (555) 123-4567"
+  phoneHref: "",               // e.g. "tel:+15551234567"
+  email: "",                   // e.g. "hello@yourstudio.com"
+  address: "",                 // e.g. "123 Main Street"
+  city: "",                    // e.g. "Your City, ST  00000"
+  instagram: "",               // e.g. "@yourstudio"
+  instagramHref: "",           // e.g. "https://instagram.com/yourstudio"
 };
 
 export type Service = {
   id: string;
   name: string;
-  duration: string;       // "60 min"
-  priceFrom: number;      // CAD
+  duration: number;        // minutes (drives slot length when booked)
+  priceFrom: number;       // CAD
   blurb: string;
   icon: LucideIcon;
   highlights: string[];
@@ -44,96 +54,80 @@ export type Service = {
 
 export const SERVICES: Service[] = [
   {
-    id: "signature-foot",
-    name: "Signature Foot Reflexology",
-    duration: "60 min",
-    priceFrom: 140,
+    id: "initial",
+    name: "Initial Reflexology",
+    duration: 60,
+    priceFrom: 120,
     blurb:
-      "Our foundational practice. A slow, deeply intentional sequence working the foot's full reflex map to calm the nervous system and restore circulation.",
+      "A full first session. We'll talk through your history, then work the foot's complete reflex map to calm the nervous system and restore circulation.",
     icon: Footprints,
-    highlights: ["Full reflex map", "Warm stone finish", "Aromatherapy"],
+    highlights: ["Full reflex map", "Intake & history", "First-time clients"],
   },
   {
-    id: "hand-arm",
-    name: "Hand & Arm Renewal",
-    duration: "45 min",
-    priceFrom: 110,
+    id: "follow-up",
+    name: "Follow-up Reflexology",
+    duration: 45,
+    priceFrom: 95,
     blurb:
-      "Targeted relief for keyboard-tired hands. Releases tension through the wrists, forearms, and shoulder girdle using pressure point and lymphatic technique.",
-    icon: Hand,
-    highlights: ["Repetitive strain relief", "Lymphatic drainage", "Wrist mobility"],
+      "For returning clients. A focused session building on your last visit — addressing what's shifted and what your body is asking for today.",
+    icon: Wind,
+    highlights: ["Returning clients", "Targeted focus", "Maintenance care"],
   },
   {
-    id: "facial-reflex",
-    name: "Facial Reflexology",
-    duration: "50 min",
-    priceFrom: 130,
+    id: "relaxation",
+    name: "Relaxation Session",
+    duration: 30,
+    priceFrom: 65,
     blurb:
-      "A meditative sequence across the face, scalp, and ears. Releases the cranial base and visibly softens tension held in the jaw and brow.",
-    icon: Sparkles,
-    highlights: ["Vagus nerve tone", "Jaw release", "Scalp & ears"],
-  },
-  {
-    id: "prenatal",
-    name: "Prenatal Sole Care",
-    duration: "60 min",
-    priceFrom: 150,
-    blurb:
-      "Gentle, side-lying reflexology designed for the second and third trimester. Eases swelling, lower back ache, and the quiet fatigue of carrying.",
-    icon: Flower2,
-    highlights: ["2nd & 3rd trimester", "Side-lying position", "Edema relief"],
-  },
-  {
-    id: "restorative-night",
-    name: "Restorative Night Ritual",
-    duration: "90 min",
-    priceFrom: 220,
-    blurb:
-      "An extended session for those who have stopped sleeping well. Begins with a grounding foot bath, closes with a warm stone and lavender finish.",
-    icon: Moon,
-    highlights: ["Foot bath opening", "Warm stones", "Lavender close"],
-  },
-  {
-    id: "seasonal",
-    name: "Seasonal Grounding",
-    duration: "75 min",
-    priceFrom: 185,
-    blurb:
-      "A practice that shifts with the calendar — cooling botanicals in summer, warming roots in winter. Always centered on what the body is asking for now.",
-    icon: Leaf,
-    highlights: ["Seasonal botanicals", "Adaptive pressure", "Constitution-based"],
+      "A shorter, gentler session for when you just need to drop your shoulders. Soothing pressure, no intake, full focus on unwinding.",
+    icon: Heart,
+    highlights: ["Gentle pressure", "No intake", "Stress relief"],
   },
 ];
 
-export type Practitioner = {
-  id: string;
-  name: string;
-  role: string;
+/* ============================================================
+   Business hours — drives both the "Hours" display and the
+   booking calendar's slot generation. Set null for closed days.
+   Times are 24-hour "HH:mm" strings.
+   ============================================================ */
+
+export const BUSINESS_HOURS: Record<
+  string,
+  { start: string; end: string } | null
+> = {
+  // Day index: 0 = Sunday ... 6 = Saturday
+  "0": null,                              // Sunday — closed
+  "1": { start: "09:00", end: "18:00" },  // Monday
+  "2": { start: "09:00", end: "18:00" },  // Tuesday
+  "3": { start: "09:00", end: "18:00" },  // Wednesday
+  "4": { start: "09:00", end: "18:00" },  // Thursday
+  "5": { start: "09:00", end: "18:00" },  // Friday
+  "6": { start: "10:00", end: "14:00" },  // Saturday — short day
 };
 
-export const PRACTITIONERS: Practitioner[] = [
-  { id: "any", name: "First available", role: "Match me with the next open practitioner" },
-  { id: "mira", name: "Mira Okafor", role: "Founder · 14 yrs · Foot & Facial" },
-  { id: "tomas", name: "Tomas Hwang", role: "Senior · 9 yrs · Hand & Sports" },
-  { id: "priya", name: "Priya Lindqvist", role: "Practitioner · 6 yrs · Prenatal" },
-];
+export const SLOT_MINUTES = 30;
 
-export const TIME_SLOTS = [
-  "10:00", "11:15", "13:30", "14:45",
-  "16:00", "17:15", "18:30", "19:45",
+export const HOURS_DISPLAY = [
+  { day: "Monday", hours: "9:00 — 18:00" },
+  { day: "Tuesday", hours: "9:00 — 18:00" },
+  { day: "Wednesday", hours: "9:00 — 18:00" },
+  { day: "Thursday", hours: "9:00 — 18:00" },
+  { day: "Friday", hours: "9:00 — 18:00" },
+  { day: "Saturday", hours: "10:00 — 14:00" },
+  { day: "Sunday", hours: "Closed" },
 ];
 
 export const STATS: { value: string; label: string; sub: string }[] = [
-  { value: "14", label: "Years in practice", sub: "Founded 2012" },
-  { value: "22k+", label: "Sessions given", sub: "And counting" },
-  { value: "4.9", label: "Average rating", sub: "Across 1,200+ reviews" },
-  { value: "3", label: "Practitioners", sub: "Small, intentional team" },
+  { value: "60", label: "Minute initial sessions", sub: "Full intake & reflex map" },
+  { value: "30", label: "Minute slot increments", sub: "Flexible booking" },
+  { value: "5", label: "Days a week", sub: "Mon–Fri, Sat mornings" },
+  { value: "100%", label: "Private sessions", sub: "One client at a time" },
 ];
 
 export const FAQ_ITEMS: { q: string; a: string }[] = [
   {
     q: "Do I need to prepare anything before my session?",
-    a: "Arrive ten minutes early so we can settle you in without rushing. Avoid a heavy meal in the two hours before, and wear loose, comfortable clothing — you'll remain clothed throughout the session, only removing socks and shoes. If you're coming from work, we have a quiet changing area and a place to store your things.",
+    a: "Arrive ten minutes early so we can settle you in without rushing. Avoid a heavy meal in the two hours before, and wear loose, comfortable clothing — you'll remain clothed throughout the session, only removing socks and shoes.",
   },
   {
     q: "Is reflexology painful?",
@@ -145,7 +139,7 @@ export const FAQ_ITEMS: { q: string; a: string }[] = [
   },
   {
     q: "Is reflexology safe during pregnancy?",
-    a: "Yes, with care, in the second and third trimester. Our prenatal practitioner Priya is trained in maternal reflexology and uses side-lying positioning, gentler pressure, and avoids certain reflex zones entirely. We do not treat the first trimester. Always check with your midwife or OB first — we're happy to coordinate with them.",
+    a: "Yes, with care, in the second and third trimester. We use side-lying positioning, gentler pressure, and avoid certain reflex zones entirely. We do not treat the first trimester. Always check with your midwife or OB first — we're happy to coordinate with them.",
   },
   {
     q: "What is your cancellation policy?",
@@ -153,7 +147,7 @@ export const FAQ_ITEMS: { q: string; a: string }[] = [
   },
   {
     q: "Do you offer gift cards?",
-    a: "We do — digital gift cards in any denomination, redeemable for any service or membership. They're sent by email within an hour of purchase. Reach out through the contact form below and we'll set it up.",
+    a: "We do — digital gift cards in any denomination, redeemable for any service. They're sent by email within an hour of purchase. Reach out through the contact form below and we'll set it up.",
   },
 ];
 

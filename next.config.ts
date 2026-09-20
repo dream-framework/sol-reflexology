@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
   output: isGhPages ? "export" : "standalone",
   basePath: isGhPages ? `/${REPO}` : "",
   trailingSlash: true,
+  allowedDevOrigins: ["127.0.0.1", "localhost"],
   images: {
     // Required for static export — the Next.js image optimizer needs a server.
     unoptimized: isGhPages,

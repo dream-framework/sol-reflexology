@@ -66,3 +66,15 @@ server.log
 /db/
 /prisma/*.db
 /prisma/*.db-journal
+
+# User upload directory (private — not part of the repo)
+/upload/
+
+# Analysis scripts (local-only debugging)
+/scripts/analyze_*.py
+/scripts/finalize_report.py
+/scripts/hero_check.py
+/scripts/verify_strings.py
+/scripts/analysis/
+/scripts/analysis_*/
+/scripts/persistent-dev.sh
