@@ -4,6 +4,7 @@ import * as React from "react";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { ArrowDown, Star } from "lucide-react";
 import { STUDIO } from "./site-data";
+import { asset } from "@/lib/utils";
 
 export function Hero() {
   const ref = React.useRef<HTMLDivElement>(null);
@@ -33,13 +34,13 @@ export function Hero() {
       >
         <div className="absolute inset-0 bg-gradient-to-b from-sage-deep/30 via-cream to-cream" />
         <img
-          src="/images/hero-light.png"
+          src={asset("/images/hero-light.png")}
           alt="A bright, plant-filled reflexology studio at morning with cream walls and lush green ferns"
           className="absolute inset-0 h-full w-full object-cover"
           fetchPriority="high"
           onError={(e) => {
             // Fallback to proto image if generation failed
-            e.currentTarget.src = "/images/proto-home.jpg";
+            e.currentTarget.src = asset("/images/proto-home.jpg");
           }}
         />
       </motion.div>

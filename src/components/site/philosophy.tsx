@@ -4,6 +4,7 @@ import * as React from "react";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { Quote } from "lucide-react";
 import { Reveal } from "./reveal";
+import { asset } from "@/lib/utils";
 
 const PILLARS = [
   {
@@ -43,12 +44,12 @@ export function Philosophy() {
             <div className="relative aspect-[3/4] rounded-2xl overflow-hidden border border-forest/10 shadow-luxe-lg">
               <div className="absolute inset-0 bg-gradient-to-br from-sage to-sage-deep/50" />
               <motion.img
-                src="/images/philosophy-light.png"
+                src={asset("/images/philosophy-light.png")}
                 alt="A practitioner's hands performing reflexology on a cream linen surface, surrounded by botanical elements"
                 style={reduce ? undefined : { y: imgY, scale: 1.1 }}
                 className="absolute inset-0 h-full w-full object-cover will-change-transform"
                 onError={(e) => {
-                  e.currentTarget.src = "/images/proto-book.jpg";
+                  e.currentTarget.src = asset("/images/proto-book.jpg");
                 }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-forest/30 via-transparent to-transparent" />

@@ -17,8 +17,12 @@ const cormorant = Cormorant_Garamond({
   display: "swap",
 });
 
+const SITE_URL = process.env.NEXT_PUBLIC_BASE_PATH
+  ? `https://dream-framework.github.io${process.env.NEXT_PUBLIC_BASE_PATH}`
+  : "http://localhost:3000";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://example.com"),
+  metadataBase: new URL(SITE_URL),
   title: "Reflexology & Holistic Bodywork",
   description:
     "Personalized reflexology in a calm, plant-filled studio. Slow, intentional sessions rooted in traditional practice.",
@@ -32,14 +36,20 @@ export const metadata: Metadata = {
     "self care",
   ],
   icons: {
-    icon: "/logo.svg",
+    icon: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/logo.svg`,
   },
   openGraph: {
     title: "Reflexology & Holistic Bodywork",
     description:
       "Personalized reflexology in a calm, plant-filled studio. Slow, intentional sessions rooted in traditional practice.",
     type: "website",
-    images: [{ url: "/images/og-cover-light.png", width: 1344, height: 768, alt: "Reflexology studio" }],
+    url: SITE_URL,
+    images: [{
+      url: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/images/og-cover-light.png`,
+      width: 1344,
+      height: 768,
+      alt: "Reflexology studio",
+    }],
   },
   twitter: {
     card: "summary_large_image",
